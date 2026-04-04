@@ -411,6 +411,33 @@
             which is what we wanted. So, the result also holds for $k+1$, and therefore it must
             hold for all $n\in \mathbb{N}$.
         \end{proof}
+        \item \begin{proof}
+            For the base case, we have,
+            \begin{align*}
+                \frac{1^2\cdot(1+1)^2}{4} = 1 = 1^3,
+            \end{align*}
+            as desired. Now, assume that for any $k\in\mathbb{N}$,
+            \begin{align*}
+                1^3+2^3+3^3+\cdots+k^3=\frac{k^2(k+1)^2}{4}.
+            \end{align*}
+            We wish to show that the result also holds for $k+1$. In other words, we want to
+            prove that
+            \begin{align*}
+                1^3+2^3+3^3+\cdots+k^3+(k+1)^3=\frac{(k+1)^2((k+1)+1)^2}{4},
+            \end{align*}
+            or, equivalently, that
+            \begin{align*}
+                1^3+2^3+3^3+\cdots+k^3+(k+1)^3=\frac{(k+1)^2((k+2)^2}{4}.
+            \end{align*}
+            We begin with the left hand side of the equation. Using the inductive hypothesis,
+            coupled with some algebraic manipulations, we see that
+            \begin{align*}
+                1^3+2^3+3^3+\cdots+k^3+(k+1)^3 &=\frac{k^2(k+1)^2}{4}+(k+1)^3, \\
+                &= \frac{(k+1)^2(k^2+4k+4)}{4},\\
+                &= \frac{(k+1)^2(k+2)^2}{4},
+            \end{align*}
+            as desired. Therefore, the result must hold for all $n\in\mathbb{N}$
+        \end{proof}
     \end{enumerate}
 \end{homeworkProblem}
 \end{document}
