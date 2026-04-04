@@ -1,0 +1,448 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+
+%amsmath
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+%Enumerating items and adding columns
+\usepackage{enumitem}
+\usepackage{multicol}
+
+%TikZ picture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{automata,positioning}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+%colours
+\usepackage{xcolor}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkChapter . \hmwkChapterTitle \hmwkClassTime: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Exercises}
+\newcommand{\hmwkChapter}{CHAPTER 3}
+\newcommand{\hmwkDate}{April 3, 2026}
+\newcommand{\hmwkClassTime}{}
+\newcommand{\hmwkChapterTitle}{Sets}
+\newcommand{\hmwkAuthorName}{\textbf{Christian Jelo R. Artoza}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkChapter:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDate}\\
+    \vspace{0.1in}\large{\textit{\hmwkChapterTitle\ \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% qedsymbol that is always flushed to the right
+\newcommand{\qedright}{
+    \begin{flushright}
+        \qedsymbol
+    \end{flushright}
+}
+
+% For propositions
+\newtheorem{prop}{Proposition}
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+%Plot Settings
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    axis equal,
+    trig format=rad,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    axis line style={latex-latex},
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 1.22.)} Given an example of 100 numbers from $\{1,\,2,\,3,\dots,\,200\}$
+    where not one of your numbers divides another. This proves that Proposition 1.11 is optimal.
+    \vspace{1.5mm}
+
+    \textbf{Solution.} Start by choosing all the larger odd numbers $m$ such that $3m > 200$. There are
+    67 such numbers; these are:
+    \begin{align*}
+        67&,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99,101,103,105 \\
+        107&,109,111,113,115,117,119,121,123,125,127,129,131,133,135,137 \\
+        139&,141,143,145,147,149,151,153,155,157,159,161,163,165,167,169 \\
+        171&,173,175,177,179,181,183,185,187,189,191,193,195,197,199
+    \end{align*}
+    For each $m$, the multiple $2m$ is not in the selection since all are odd numbers. Furthermore,
+    since the multiple $3m > 200$, it follows that $3m$ and the larger multiples are not included.
+    Thus, no number in the selection divides another.
+    \vspace{1.5mm}
+
+    Next, we select the numbers $2m$ where $m$ is an odd number before $67$ such that that $3m \geq 67$.
+    There will be 22 such numbers, which are the following:
+    \begin{align*}
+        46&,50,54,58,62,66,70,74,78,82,86,90,\\
+        94&,98,102,106,110,114,118,122,126,130
+    \end{align*}
+    Since these are even numbers, none of these numbers divide those in the first selection. Furthermore,
+    since $3m \geq 67$ for each $2m$ in this selection, it follows that $3\cdot 2m \geq 134$. Thus,
+    none of the larger multiples of each number are included in the selection. Hence, none divides
+    another.
+    \vspace{1.5mm}
+
+    We continue selecting in this fashion: selecting the numbers $2^k \cdot m$ where $m$ is an odd
+    number before the odd number $p$ corresponding to the smallest number, $2^\ell \cdot p$
+    for some $\ell$, in the previous selection; with the property that $3m \geq p$. Doing so
+    gives the following 100 numbers.
+    \begin{align*}
+        16&,24,40,56,36,44,52,60,68,76,84,46,50,54,58,62,66,70,74,78,82,86,90,94, \\
+        98&,102,106,110,114,118,122,126,130,67,69,71,73,75,77,79,81,83,85,87,89,91,\\
+        93&,95,97,99,101,103,105,107,109,111,113,115,117,119,121,123,125,127,129,\\
+        131&,133,135,137,139,141,143,145,147,149,151,153,155,157,159,161,163,165,\\
+        167&,169,171,173,175,177,179,181,183,185,187,189,191,193,195,197,199
+    \end{align*}
+    By construction, no number in the selection divides another. \qedright
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 1.23.)} Suppose you deal a pile of cards, face down, from a shuffled deck of
+    cards (this is a standard 52-card deck, where each card is one of 4 suits and one of 13 ranks).
+    How many must you deal out until you are guaranteed...
+    \begin{enumerate}
+        \item five of the same suit? That is, a flush.
+        \item two of the same rank? That is, a two-of-a-kind.
+        \item three of the same rank? That is, a three-of-a-kind.
+        \item four of the same rank? That is, a four-of-a-kind.
+        \item two of one rank and three of another? That is, a full house.
+    \end{enumerate}
+    \textbf{Solution.}
+
+    1. There are four suits in a deck of cards (Clubs, Spades, Hearts, Diamonds). So, by the Pigeonhole
+    princeiple, five of the same suit is guaranteed when you deal:
+    \begin{align*}
+        (4)(4) + 1 = 17\text{ cards}
+    \end{align*}
+    2. There are thirteen ranks in a deck of cards. So, in order to guarantee a two-of-a-kind, you have
+    to deal:
+    \begin{align*}
+        (13)(1) + 1 = 14\text{ cards}
+    \end{align*}
+    3. A three-of-a-kind is guaranteed by dealing:
+    \begin{align*}
+        (13)(2) + 1 = 27\text{ cards}
+    \end{align*}
+    4. A four-of-a-kind is guaranteed by dealing:
+    \begin{align*}
+        (13)(3) + 1 = 40\text{ cards}
+    \end{align*}
+    5. Pair up each rank to another rank. For instance, consider pairing Ace and Two, Three and Four,
+    Five and Six, Seven and Eight, Nine and Ten, Queen and Jack, but leave Kings without a pair.
+    We'll create a box for each pair and a box for the Kings.
+    \vspace{5mm}
+
+    \fbox{
+        \begin{minipage}[c][8ex]{1.5cm}
+            \begin{center}
+                Ace \& 2
+            \end{center}
+        \end{minipage}
+    }\quad
+    \fbox{
+        \begin{minipage}[c][8ex]{1.5cm}
+            \begin{center}
+                3 \& 4
+            \end{center}
+        \end{minipage}
+    }\quad
+    \fbox{
+        \begin{minipage}[c][8ex]{1.5cm}
+            \begin{center}
+                5 \& 6
+            \end{center}
+        \end{minipage}
+    }\quad
+    \fbox{
+        \begin{minipage}[c][8ex]{1.5cm}
+            \begin{center}
+                7 \& 8
+            \end{center}
+        \end{minipage}
+    }\quad
+    \fbox{
+        \begin{minipage}[c][8ex]{1.5cm}
+            \begin{center}
+                9 \& 10
+            \end{center}
+        \end{minipage}
+    }\quad
+    \fbox{
+        \begin{minipage}[c][8ex]{1.5cm}
+            \begin{center}
+                Jack \& Queen
+            \end{center}
+        \end{minipage}
+    }\quad
+    \fbox{
+        \begin{minipage}[c][8ex]{1.5cm}
+            \begin{center}
+                King
+            \end{center}
+        \end{minipage}
+    }
+    \vspace{5mm}
+
+    It is likely that we could deal enough cards to get three cards of the same rank, and deal more
+    cards enough that we get a two-of-a-kind whose rank is paired with that of the three-of-a-kind,
+    giving us a full house. But, it is also possible to get a four-of-a-kind before getting the
+    two-of-a-kind. So, in order to guarantee a full house, one box must contain 6 cards. Thus, by the
+    Pigeonhole principle, we need to deal
+    \begin{align*}
+        ((6)(5)+1)+4 = 35\text{ cards. }
+    \end{align*}
+    \qedright
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 1.24.)} Prove that any set of seven integers contains a pair whose sum or
+    difference is divisible by 10.
+    \begin{proof}
+        First, note that divisibility of a sum $n+m$, or difference $n-m$, by 10 depends on the
+        ones digit of $n$ and $m$. In particular, if the sum of the ones digit of two numbers is equal
+        to 10, then the sum of those numbers is divisible by 10. Furthermore, if the difference of
+        the ones digit of two numbers is equal to 0, then the difference of those numbers is divisible
+        by 10. Using this fact, we create a box for each pair of number that add up to 10; while leaving
+        the numbers 0 and 5 alone in a box.
+        \begin{center}
+            \fbox{
+            \begin{minipage}[c][8ex]{1.5cm}
+                \begin{center}
+                    0
+                \end{center}
+            \end{minipage}
+            }\quad
+            \fbox{
+                \begin{minipage}[c][8ex]{1.5cm}
+                    \begin{center}
+                        1 or 9
+                    \end{center}
+                \end{minipage}
+            }\quad
+            \fbox{
+                \begin{minipage}[c][8ex]{1.5cm}
+                    \begin{center}
+                        2 or 8
+                    \end{center}
+                \end{minipage}
+            }\quad
+            \fbox{
+                \begin{minipage}[c][8ex]{1.5cm}
+                    \begin{center}
+                        3 or 7
+                    \end{center}
+                \end{minipage}
+            }\quad
+            \fbox{
+                \begin{minipage}[c][8ex]{1.5cm}
+                    \begin{center}
+                        4 or 6
+                    \end{center}
+                \end{minipage}
+            }\quad
+            \fbox{
+                \begin{minipage}[c][8ex]{1.5cm}
+                    \begin{center}
+                        5
+                    \end{center}
+                \end{minipage}
+            }
+        \end{center}
+        Then, given a set of seven integers, we put each integer into the boxes according to their ones
+        digit. For instance, if the integer has 9 as its ones digit, then we put it into the box
+        corresponding to 1 or 9. With 7 integers to put into 6 boxes, it follows by the Pigeonholse
+        principle that at least one box contains at least two integers $n,m$. If $n$ and $m$ are
+        contained in the "0" or "5" box, then both their sum and difference are divisible by 10. Suppose
+        $n$ and $m$ are contained in the other boxes. By construction of the boxes, the sum of their ones
+        digits must be equal to 10, if their ones digits are not the same. Hence, $n+m$ is divisible by
+        10. But, if the ones digits are the same, then the difference of their once digits is equal to 0.
+        Hence, $n-m$ is divisible by 10.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 1.25.)} Read the \textit{Introduction to Ramsey theory} following this
+    chapter. Then, let $r(n,m)$ be the smallest value $N$ for which every red/blue coloring
+    of $K_N$ contains either a red $K_n$ or a blue $K_m$. Prove that $r(n,2)=n$
+    \begin{proof}
+    We want to prove that $n$ is the smallest value such that every red/blue coloring
+    of $K_n$ contains either a red $K_n$ or a blue $K_2$. Clearly it can not be smaller than $n$
+    since the coloring of $K_{n-1}$ where all edges are colored red neither contains a red $K_n$ nor a
+    blue $K_2$. Furthermore, $K_n$ is either colored all red, or not. If it is not colored all red,
+    then it contains a blue $K_2$. Therefore, $r(n,2) = n$, as desired.
+    \end{proof} 
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 1.26.)} Determine the U.S. population at the time that you are reading
+    this.
+    \begin{enumerate}
+        \item Does the pigeonhole principle guarantee that 1 million U.S. residents all have
+        the same birthday?
+        \item If the principle does not guarantee this, how many people are needed for until that
+        milestone is reached? If the USA grows by 2 million people per year, in what year will
+        this occur?
+    \end{enumerate}
+    \textbf{Solution.} The current population of the US as of 17:43 UTC March 30, 2026 is 342,407,233.
+    \begin{enumerate}
+        \item It is guaranteed that 1 million U.S. residents all have the same birthday if the total
+        population is:
+        \begin{align*}
+            (366)(999,999)+1=365,999,635
+        \end{align*}
+        Comparing this with the current population, it follows that the pigeonhole principle does not
+        guarantee that 1 million residents have the same birthday.
+
+        \item We would need:
+        \begin{align*}
+            365,999,635 - 342,407,233 = 23,592,402
+        \end{align*}
+        more U.S. residents. And, if the USA grows by 2 million people per year, then the milestone
+        will be reached after
+        \begin{align*}
+            \frac{23,592,402}{2,000,000} \approx 12
+        \end{align*}
+        years.\qedright
+    \end{enumerate}
+\end{homeworkProblem}
+
+\end{document}

@@ -1,0 +1,365 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+
+%amsmath
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+%Enumerating items and adding columns
+\usepackage{enumitem}
+\usepackage{multicol}
+
+%TikZ picture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{automata,positioning}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+%colours
+\usepackage{xcolor}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkChapter . \hmwkChapterTitle \hmwkClassTime: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Exercises}
+\newcommand{\hmwkChapter}{CHAPTER 3}
+\newcommand{\hmwkDate}{April 3, 2026}
+\newcommand{\hmwkClassTime}{}
+\newcommand{\hmwkChapterTitle}{Sets}
+\newcommand{\hmwkAuthorName}{\textbf{Christian Jelo R. Artoza}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkChapter:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDate}\\
+    \vspace{0.1in}\large{\textit{\hmwkChapterTitle\ \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% qedsymbol that is always flushed to the right
+\newcommand{\qedright}{
+    \begin{flushright}
+        \qedsymbol
+    \end{flushright}
+}
+
+% For propositions
+\newtheorem{prop}{Proposition}
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+%Plot Settings
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    axis equal,
+    trig format=rad,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    axis line style={latex-latex},
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.6.)} Determine conditions on integers $m$ and $n$ for which $mn$ is
+    even. Write down your conditions as a conjecture, and then prove that your conjecture is
+    correct.
+    \vspace{1.5mm}
+
+    \textbf{Solution.}
+
+    \begin{prop}
+        Let $m$ and $n$ be integers. If either $m$ or $n$ is even, then $mn$ is even.
+    \end{prop}
+
+    \begin{proof}
+        Without loss of generality, suppose $m$ is even. Then, $m=2k$ for some integer $k$.
+        Hence,
+        \begin{align*}
+            mn=(2k)n=2kn
+        \end{align*}
+        Since $kn$ is an integer, it follows that $mn$ is even. This completes the proof.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.7.)} Prove the following. For each, $m,n,$ and $t$ are integers.
+    \begin{multicols}{2}
+        \begin{enumerate}[label=(\alph*)]
+            \item If $m \mid n$, then $m^2 \mid n^2$.
+            \item If $m \mid n$, then $m \mid (7n^3+12n^2-n)$.
+            \item If $m \mid n$ and $m \mid t$, then $m \mid (n+t)$.
+            \columnbreak
+            \item If $3 \mid 2n$, then $3\mid n$.
+            \item If $m^3 \mid n$ and $n^4 \mid t$, then $m^12 \mid t$.
+        \end{enumerate}
+    \end{multicols}
+    \textbf{Solution.}
+    \begin{enumerate}[label=(\alph*)]
+        \item \begin{proof}
+            Assume $m \mid n$. Then, $n = k\cdot m$ for some integer $k$. Multiplying both sides
+            of this equation by $m$ we get
+            \begin{align*}
+                mn = k\cdot m^2
+            \end{align*}
+            This implies that $m^2 \mid mn$. Now, going back to the equation $n = k \cdot m$, we can
+            multiply both sides by $n$ and get
+            \begin{align*}
+                n^2 = k \cdot mn
+            \end{align*}
+            Hence, $mn \mid n^2$. So, since $m^2 \mid mn$, it follows by transitivity that $m^2 \mid n^2$,
+            as desired.
+            \end{proof}
+        \item \begin{proof}
+            Assume $m \mid n$. Then, $n = k \cdot m$ for some $k$, and hence
+            \begin{align*}
+                7n^3+12n^2-n
+                &= 7(k\cdot m)^3 + 12(k\cdot m)^2 - k\cdot m \\
+                &= 7k^3 m^3 + 12k^2 m^2 - km \\
+                &= (7k^3 m^2 + 12k^2 m - k)\cdot m
+            \end{align*}
+            Since $7k^3 m^2 + 12k^2 m - k$ is an integer, it follows that $m \mid (7n^3+12n^2-n)$.
+            \end{proof}
+        \item \begin{proof}
+            Suppose that $m \mid n$ and $m \mid t$. Then $n = k\cdot m$ and $t = \ell \cdot m$ for
+            some integers $k$ and $\ell$. Thus, we have
+            \begin{align*}
+                n+t = k\cdot m + \ell \cdot m = (k+\ell)\cdot m
+            \end{align*}
+            Therefore, $m \mid (n+t)$.
+            \end{proof}
+        \item \begin{proof}
+            Suppose $3 \mid 2n$. Then, $2n = k \cdot 3$ for some integer $k$. Combining with the fact
+            that $2n$ is even, this implies that $k\cdot 3$ is even. But, $3$ is an odd number, so
+            it must be the case that $k$ is even so that $k \cdot 3$ is even. Hence, $k = 2\ell$ for
+            some $\ell$. Thus,
+            \begin{align*}
+                2n = (2\ell) \cdot 3,
+            \end{align*}
+            and, dividing both sides by $2$, we get
+            \begin{align*}
+                n = \ell \cdot 3.
+            \end{align*}
+            Therefore, $3\mid n$.
+            \end{proof}
+        \item \begin{proof}
+            Assume that $m^3 \mid n$ and $n^4 \mid t$. Then, by item (a), $m^6 \mid n^2$, and applying
+            it once more, we get $m^{12} \mid n^4$. So, since $n^4 \mid t$, it follows by transitivity
+            that $m^{12} \mid t$, as desired.
+            \end{proof}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.8.)}Prove the following. For each, $m, n,$ and $t$ are integers.
+    \begin{multicols}{2}
+        \begin{enumerate}[label=(\alph*)]
+            \item $1\mid n$.
+            \item $n \mid n$.
+            \columnbreak
+            \item If $mn\mid t$, then $m\mid t$.
+            \item If $mn \mid tn$, then $m \mid t$.
+        \end{enumerate}
+    \end{multicols}
+    \textbf{Solution.}
+    \begin{enumerate}[label=(\alph*)]
+        \item \begin{proof}
+            From the identity property for multiplication; that is, $1\cdot n = n\cdot 1 = n$, it
+            follows that $1\mid n$.
+            \end{proof}
+        \item \begin{proof}
+            Same as in the proof of item (a). Since $n=1\cdot n$, it follows that $n\mid n$.
+            \end{proof}
+        \item \begin{proof}
+            Suppose $mn \mid t$. Then $t = k\cdot (mn)$ for some $k$. We can rearrange the right hand
+            side of the equation to get $t = (kn)\cdot m$, making it more clear that $m \mid t$, as
+            desired.
+            \end{proof}
+        \item \begin{proof}
+            Assume that $mn\mid tn$ and that $n\neq 0$. Then, $tn = k\cdot mn$ for some integer $k$.
+            Hence, by the cancellation property, it follows that
+            \begin{align*}
+                t = k\cdot m.
+            \end{align*}
+            Therefore, $m\mid t$.
+            \end{proof}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.9.)} Prove that if $m$ and $n$ are positive real numbers and $m < n$, then
+    $m^2 < n^2$. You may use the fact that if $a<b$ and $c$ is positive, then $ac<bc$.
+    \begin{proof}
+        Assume $m$ and $n$ are positive real numbers and that $m < n$. Then, since $m$ is positive, we
+        can multiply both sides of the inequality by $m$ and get
+        \begin{align*}
+            m^2 < mn.
+        \end{align*}
+        Similarly, since $n$ is positive, we have
+        \begin{align*}
+            mn < n^2.
+        \end{align*}
+        Hence, by transitivity,
+        \begin{align*}
+            m^2 < n^2,
+        \end{align*}
+        as desired.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.10.)} For each pair of integers, find the unique quotient and remainder when $b$ is divided by $a$.
+    \begin{multicols}{3}
+        \begin{enumerate}[label=(\alph*)]
+            \item $a=4,b=15$
+            \item $a=15,b=4$
+            \columnbreak
+            \item $a=-7,b=16$
+            \item $a=5,b=-11$
+            \columnbreak
+            \item $a=-1,b=-15$
+            \item $a=4,b=0$
+        \end{enumerate}
+    \end{multicols}
+    \textbf{Solution.}
+    \begin{enumerate}[label=(\alph*)]
+        \item $q=3,$ and $r=3$ so that $15 = 4\cdot 3 + 3$
+        \item $q=0,$ and $r=4$ so that $4 = 15\cdot 0 + 4$
+        \item $q=-2,$ and $r=2$ so that $16 = -7\cdot (-2) + 2$
+        \item $q=-2,$ and $r=-1$ so that $-11 = 5\cdot (-2) + (-1)$
+        \item $q=15,$ and $r=0$ so that $-15 = (-1)\cdot 15\cdot + 0$
+        \item $q=0,$ and $r=0$ so that $0 = 4\cdot 0 + 0$ \qedright
+    \end{enumerate}
+\end{homeworkProblem}
+\end{document}

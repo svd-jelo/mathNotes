@@ -1,0 +1,330 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+
+%amsmath
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+%Enumerating items and adding columns
+\usepackage{enumitem}
+\usepackage{multicol}
+
+%TikZ picture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{automata,positioning}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+%colours
+\usepackage{xcolor}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkChapter . \hmwkChapterTitle \hmwkClassTime: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Exercises}
+\newcommand{\hmwkChapter}{CHAPTER 4}
+\newcommand{\hmwkDate}{April 4, 2026}
+\newcommand{\hmwkClassTime}{}
+\newcommand{\hmwkChapterTitle}{Induction}
+\newcommand{\hmwkAuthorName}{\textbf{Christian Jelo R. Artoza}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkChapter:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDate}\\
+    \vspace{0.1in}\large{\textit{\hmwkChapterTitle\ \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% qedsymbol that is always flushed to the right
+\newcommand{\qedright}{
+    \begin{flushright}
+        \qedsymbol
+    \end{flushright}
+}
+
+% For propositions
+\newtheorem{prop}{Proposition}
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+%Plot Settings
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    axis equal,
+    trig format=rad,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    axis line style={latex-latex},
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 4.2.)} Provide these proofs that if $n\in\mathbb{N}$, then $n^2-n$ is even.
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove it by cases, by considering the "$n$ is even" and "$n$ is odd" cases.
+        \item Prove it by applying \textit{Proposition 4.2} to the sum $1+2+3+\cdots+(n-1)$.
+        \item Prove it by induction.
+    \end{enumerate}
+    \begin{enumerate}[label=(\alph*)]
+        \item \begin{proof}
+            Let $n\in\mathbb{N}$. Then either $n$ is even, or $n$ is odd. We'll consider these
+            cases, separately.
+            \vspace{1.5mm}
+
+            \underline{Case 1.} $n$ is even. \\
+            Suppose $n$ is even. Then, since the square of an even integer is even, it follows that
+            $n^2$ is even. Combining with the fact that the difference of two even integers is even,
+            we see that $n^2 - n$ is even, as desired.
+            \vspace{1.5mm}
+
+            \underline{Case 2.} $n$ is odd. \\
+            Suppose $n$ is odd. Then $n-1$ is even. So, since the product of an even integer and
+            an odd integer is even, it follows that the product $n(n-1)$ is even. But, observe that
+            $n^2-n = n(n-1)$. Thus, $n^2-n$ is even.
+            \vspace{1.5mm}
+
+            We have shown that $n^2-n$ is even whether $n$ is odd, or even. This completes the proof.
+            \end{proof}
+        \item \begin{proof}
+            Let $n\in\mathbb{N}$. Then, we can apply \textit{Proposition 4.2} on $n-1$, and get
+            \begin{align*}
+                1+2+3+\cdots+(n-1)=\frac{n(n-1)}{2}
+            \end{align*}
+            Multiplying $2$ to both sides, we get
+            \begin{align*}
+                2(1+2+3+\cdots+(n-1))=n(n-1).
+            \end{align*}
+            Thus,
+            \begin{align*}
+                n^2-n=2(1+2+3+\cdots+(n-1)).
+            \end{align*}
+            Since the sum at the right hand side of the equation is an integer, it follows that
+            $n^2-n$ is an even number, as desired.
+            \end{proof} 
+        \item \begin{proof}
+            We proceed by induction.
+            \vspace{1.5mm}
+
+            \underline{Base Case}. The base case is when $n=1$, and
+            \begin{align*}
+                1^2 - 1 = 0,
+            \end{align*}
+            which is an even number, as desired.
+            \vspace{1.5mm}
+
+            \underline{Inductive Hypothesis}. Suppose that the result holds for all
+            $k\in \mathbb{N}$. That is, for any $k\in\mathbb{N}$, $k^2-k$ is even.
+            \vspace{1.5mm}
+
+            \underline{Induction Step}. We want to show that the result holds for $k+1$. This means
+            proving that $(k+1)^2-(k+1)$ is even. First, observe that
+            \begin{align*}
+                (k+1)^2-(k+1) &= (k^2+2k+1)-(k+1) \\
+                &= (k^2-k) + 2k.
+            \end{align*}
+            By the inductive hypothesis, the first term is even; and the second term is clearly
+            an even number as well. So, since the sum of two even numbers is even, it follows that
+            $(k+1)^2-(k+1)$ is even.
+            \vspace{1.5mm}
+
+            \underline{Conclusion}. Therefore, the result holds for all $n\in\mathbb{N}$.
+            \end{proof}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 4.3.)} Use induction or strong induction to prove that the following hold
+    for every $n\in \mathbb{N}$.
+    \begin{multicols}{3}
+        \begin{enumerate}[label=(\alph*)]
+            \item $3\mid (4^n-1)$
+            \item $6\mid (n^3-n)$
+            \columnbreak
+            \item $9\mid (3^{4n}+9)$
+            \item $5\mid (n^5-n)$
+            \columnbreak
+            \item $6\mid (5^{2n}-1)$
+            \item $5\mid (6^n - 1)$
+        \end{enumerate}
+    \end{multicols}
+    \begin{enumerate}[label=(\alph*)]
+        \item \begin{proof}
+            The base case is when $n=1$, and $4^1-1=3$, so $3\mid (4^1-1)$. Now, suppose for any
+            $k\in\mathbb{N}$, $3\mid (4^k-1)$. We wish to show that the result holds for $k+1$.
+            Observe that
+            \begin{align*}
+                4^{(k+1)}-1 &= 4\cdot 4^{k}-1 \\
+                &= 3\cdot 4^{k} + 4^k-1.
+            \end{align*}
+            The first term is a multiple of $3$, and hence is divisible by $3$. And, by the induction
+            hypothesis, the second term is also divisible by $3$. Hence, the sum must also be divisible
+            by $3$, as desired. Therefore, by induction, $3\mid (4^n-1)$ for all $n\in\mathbb{N}$.
+        \end{proof}
+        \item \begin{proof}
+            For the base case, we have $1^3-1=0$. And, indeed, $6\mid 0$. Now, suppose for any
+            $k\in \mathbb{N}$, $6\mid(k^3-k)$. To show that the result holds for $k+1$, note that
+            we can write
+            \begin{align*}
+                (k+1)^3-(k+1) &= (k^3+3k^2+3k+1)-(k+1) \\
+                &= (k^3-k)+3k(k+1)
+            \end{align*}
+            By the inductive hypothesis, the first term is divisible by $6$. And, for the second term,
+            note that either $k$ is even or $k+1$ is even. Without loss of generality, suppose $k$
+            is even. Then, $k=2\ell$ for some $\ell \in \mathbb{N}$. Thus,
+            \begin{align*}
+                3k(k+1) &= 3\cdot 2\ell\cdot (2\ell+1)\\
+                &=6\ell(2\ell+1)
+            \end{align*}
+            Hence, the second term is also divisible by $6$, and thus $6\mid ((k+1)^3-(k+1))$. We have
+            shown that, for any $k\in \mathbb{N}$, $6\mid (k^3-k)$ implies $6\mid ((k+1)^3-(k+1))$. Therefore,
+            by induction, $6\mid (n^3-n)$ for all $n\in\mathbb{N}$.
+        \end{proof}
+        \item \begin{proof}
+            The base case is when $n=1$, and $3^{4\cdot 1}+9=90$. Hence, $9\mid 3^{4\cdot 1}+9$,
+            as desired. Now, suppose the result holds for any $k\in\mathbb{N}$. To prove the $k+1$
+            case, observe that we can write
+            \begin{align*}
+                3^{4(k+1)}+9 &= 3^4\cdot3^{4k}+9 \\
+                &= (3^4-1)\cdot 3^{4k} + (3^{4k}+9) \\
+                &= 9^{2k}\cdot(3^4-1) + (3^{4k}+9).
+            \end{align*}
+            Since $2k\geq 2$, it follows that the first term is divisible by $9$. Furthermore,
+            it follows by the inductive hypotheses that the second term is divisible by $9$.
+            Thus, $9\mid (3^{4(k+1)}+9)$. Therefore, the result must hold for all $n\in\mathbb{N}$.
+        \end{proof}
+    \end{enumerate}
+\end{homeworkProblem}
+\end{document}

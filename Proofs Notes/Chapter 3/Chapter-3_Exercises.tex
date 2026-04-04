@@ -1,0 +1,476 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+
+%amsmath
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+%Enumerating items and adding columns
+\usepackage{enumitem}
+\usepackage{multicol}
+
+%TikZ picture
+\usepackage{tikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns,arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{automata,positioning}
+
+%pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+%colours
+\usepackage{xcolor}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkChapter . \hmwkChapterTitle \hmwkClassTime: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Exercises}
+\newcommand{\hmwkChapter}{CHAPTER 3}
+\newcommand{\hmwkDate}{April 3, 2026}
+\newcommand{\hmwkClassTime}{}
+\newcommand{\hmwkChapterTitle}{Sets}
+\newcommand{\hmwkAuthorName}{\textbf{Christian Jelo R. Artoza}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkChapter:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDate}\\
+    \vspace{0.1in}\large{\textit{\hmwkChapterTitle\ \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% qedsymbol that is always flushed to the right
+\newcommand{\qedright}{
+    \begin{flushright}
+        \qedsymbol
+    \end{flushright}
+}
+
+% For propositions
+\newtheorem{prop}{Proposition}
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+%Plot Settings
+\pgfplotsset{
+    standard/.style={
+    axis line style = thick,
+    axis equal,
+    trig format=rad,
+    enlargelimits,
+    axis x line=middle,
+    axis y line=middle,
+    axis line style={latex-latex},
+    enlarge x limits=0.15,
+    enlarge y limits=0.15,
+    every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+    }
+}
+
+
+\begin{homeworkProblem}
+    \textit{(Exercise 3.7.)} Sketch the following sets as points/arcs/regions in the xy-plane.
+    \begin{multicols}{2}
+        \begin{enumerate}[label=(\alph*)]
+            \item $\{(x,y):x\in [1,3]$ and $y\in[2,4]\}$
+            \item $\{(x,y):x\in \mathbb{Z}$ and $y\in \mathbb{R}\}$
+            \item $\{(x,y):x^2+y^2=4\}$
+            \columnbreak
+            \item $\{(x,y):x^2+y^2\leq 4\}$
+            \item $\{1,2,3\}\times \{-1,1\}$
+            \item $[-1,2]\times [1,\pi]$
+        \end{enumerate}
+    \end{multicols}
+    \textbf{Solution.}
+    \begin{enumerate}[label=(\alph*)]
+        \item It is the closed rectangle with vertices at $(1,2),(1,4),(3,4),$ and $(3,2)$:
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[standard,
+                    xtick={1,3},
+                    ytick={2,4},
+                    xlabel={$x$},
+                    ylabel={$y$},
+                    samples=1000,
+                    xmin=-1, xmax=4,
+                    ymin=-1, ymax=5
+                    ]
+                    
+                    \node[anchor=center, label=south west:$O$] at (axis cs:0,0){};
+
+                    \draw[blue] (axis cs: 1,2) rectangle (axis cs: 3,4);
+                    \fill[blue, fill opacity=0.2] (axis cs: 1,2) rectangle (axis cs: 3,4);
+                \end{axis}
+            \end{tikzpicture} 
+        \end{center}
+
+        \item All vertical lines passing through all integers:
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[standard,
+                    xtick={-2,-1,1,2,3,4},
+                    ytick=\empty,
+                    xticklabels={$-2$,$-1$,$1$,$2$,$3$,$4$},
+                    xticklabel style={anchor=east},
+                    xticklabel shift=5pt,
+                    xlabel={$x$},
+                    ylabel={$y$},
+                    samples=1000,
+                    xmin=-2, xmax=5,
+                    ymin=-1, ymax=5
+                    ]
+                    
+                    \node[anchor=center, label=south west:$O$] at (axis cs:0,0){};
+
+                    \draw[<->,color=blue,] (axis cs:-2,-1.9) -- (axis cs:-2,5.9);
+                    \draw[<->,color=blue,] (axis cs:-1,-1.9) -- (axis cs:-1,5.9);
+                    \draw[<->,color=blue,] (axis cs:0,-1.9) -- (axis cs:0,5.9);
+                    \draw[<->,color=blue,] (axis cs:1,-1.9) -- (axis cs:1,5.9);
+                    \draw[<->,color=blue,] (axis cs:2,-1.9) -- (axis cs:2,5.9);
+                    \draw[<->,color=blue,] (axis cs:3,-1.9) -- (axis cs:3,5.9);
+                    \draw[<->,color=blue,] (axis cs:4,-1.9) -- (axis cs:4,5.9);
+                \end{axis}
+            \end{tikzpicture} 
+        \end{center}
+
+        \item The circle of radius $2$ centered at the origin:
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[standard,
+                    xtick={-2,2},
+                    ytick={-2,2},
+                    xlabel={$x$},
+                    ylabel={$y$},
+                    samples=1000,
+                    xmin=-2, xmax=2,
+                    ymin=-2, ymax=2
+                    ]
+                    
+                    \node[anchor=center, label=south west:$O$] at (axis cs:0,0){};
+
+                    \draw[blue] (0,0) circle (2);
+                \end{axis}
+            \end{tikzpicture} 
+        \end{center}
+
+        \item The closed ball (a.k.a. shaded circle) of radius $2$ centered at the origin:
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[standard,
+                    xtick={-2,2},
+                    ytick={-2,2},
+                    xlabel={$x$},
+                    ylabel={$y$},
+                    samples=1000,
+                    xmin=-2, xmax=2,
+                    ymin=-2, ymax=2
+                    ]
+                    
+                    \node[anchor=center, label=south west:$O$] at (axis cs:0,0){};
+
+                    \draw[blue] (0,0) circle (2);
+                    \fill[blue, fill opacity = 0.2] (0,0) circle (2);
+                \end{axis}
+            \end{tikzpicture} 
+        \end{center}
+
+        \item No name; just some points lying around...
+            \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[standard,
+                    xtick={1,2,3},
+                    ytick={-1,1},
+                    xlabel={$x$},
+                    ylabel={$y$},
+                    samples=1000,
+                    xmin=-1, xmax=3,
+                    ymin=-1, ymax=1
+                    ]
+                    
+                    \node[anchor=center, label=south west:$O$] at (axis cs:0,0){};
+
+                    \draw[blue] (1,1) circle (0.05);
+                    \fill[blue] (1,1) circle (0.05);
+
+                    \draw[blue] (1,-1) circle (0.05);
+                    \fill[blue] (1,-1) circle (0.05);
+
+                    \draw[blue] (2,1) circle (0.05);
+                    \fill[blue] (2,1) circle (0.05);
+
+                    \draw[blue] (2,-1) circle (0.05);
+                    \fill[blue] (2,-1) circle (0.05);
+
+                    \draw[blue] (3,1) circle (0.05);
+                    \fill[blue] (3,1) circle (0.05);
+
+                    \draw[blue] (3,-1) circle (0.05);
+                    \fill[blue] (3,-1) circle (0.05);
+                \end{axis}
+            \end{tikzpicture} 
+        \end{center}
+
+        \item The closed rectangle with vertices $(-1,1),(1,\pi),(2,\pi),$ and $(2,1)$:
+                \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[standard,
+                    xtick={-1,2},
+                    ytick={1,pi},
+                    xticklabels={$-1$,$2$},
+                    yticklabels={$1$,$\pi$},
+                    xlabel={$x$},
+                    ylabel={$y$},
+                    samples=1000,
+                    xmin=-2, xmax=3,
+                    ymin=-1, ymax=4
+                    ]
+                    
+                    \node[anchor=center, label=south west:$O$] at (axis cs:0,0){};
+
+                    \draw[blue, fill opacity=0.2] (-1,1) rectangle (2,pi);
+                    \fill[blue, fill opacity=0.2] (-1,1) rectangle (2,pi);
+                \end{axis}
+            \end{tikzpicture} 
+        \end{center}
+    \end{enumerate}
+    \qedright
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 3.8.)} Determine whether each of the following is true or false.
+    \begin{multicols}{3}
+        \begin{enumerate}[label=(\alph*)]
+            \item $1\in \{1,\{1\}\}$
+            \item $1\subseteq \{1,\{1\}\}$
+            \item $1\in \mathcal{P}(\{1,\{1\}\})$
+            \item $\{1\}\in \{1,\{1\}\}$
+            \item $\{1\}\subseteq \{1,\{1\}\}$
+            \columnbreak
+            \item $\{1\}\in \mathcal{P}(\{1,\{1\}\})$
+            \item $\{\{1\}\}\in\{1,\{1\}\}$
+            \item $\{\{1\}\}\subseteq\{1,\{1\}\}$
+            \item $\{\{1\}\}\in \mathcal{P}(\{1,\{1\}\})$
+            \item $\emptyset \in \mathbb{N}$
+            \columnbreak
+            \item $\emptyset \subseteq \mathbb{N}$
+            \item $\emptyset \in \mathcal{P}(\mathbb{N})$
+            \item $\mathbb{Q}\times\mathbb{Q}\subseteq\mathbb{R}\times\mathbb{R}$
+            \item $\mathbb{R}^2 \subseteq \mathbb{R}^3$
+            \item $\emptyset\subseteq\{1,2,3\}\times\{a,b\}$
+        \end{enumerate}
+    \end{multicols}
+    \textbf{Solution.}
+    \begin{multicols}{3}
+        \begin{enumerate}[label=(\alph*)]
+            \item True
+            \item False
+            \item False
+            \item True
+            \item True
+            \columnbreak
+            \item True
+            \item False
+            \item True
+            \item True
+            \item False
+            \columnbreak
+            \item True
+            \item True
+            \item True
+            \item True
+            \item True
+        \end{enumerate}
+    \end{multicols}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 3.9.)} Write down all subsets of each of the following.
+    \begin{multicols}{2}
+        \begin{enumerate}[label=(\alph*)]
+            \item $\{1,2,3\}$
+            \item $\{\mathbb{N},\mathbb{Q},\mathbb{R}\}$
+            \item $\{\mathbb{N},\{\mathbb{Q},\mathbb{R}\}\}$
+            \item $\emptyset$
+        \end{enumerate}
+    \end{multicols}
+    \textbf{Solution.}
+    \begin{enumerate}[label=(\alph*)]
+        \item $\emptyset,\{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}$
+        \item $\emptyset,\{\mathbb{N}\},\{\mathbb{Q}\},\{\mathbb{R}\},\{\mathbb{N},\mathbb{Q}\},
+        \{\mathbb{N},\mathbb{R}\},\{\mathbb{Q},\mathbb{R}\},\{\mathbb{N},\{\mathbb{Q},\mathbb{R}\}\}$
+        \item $\emptyset,\{\mathbb{N}\},\{\{\mathbb{Q},\mathbb{R}\}\},\{\mathbb{N},\{\mathbb{Q},\mathbb{R}\}\}$
+        \item $\emptyset$
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 3.10.)} The set $\{5a+3b:a,b\in\mathbb{Z}\}$ is equal to a familiar set. By
+    examining which elements are possible, determine the familiar set.
+
+    \begin{prop}
+        $\{5a+3b:a,b\in\mathbb{Z}\} = \mathbb{Z}$
+    \end{prop}
+
+    \begin{proof}
+        Said differently, we want to prove that $\{5a+3b:a,b\in\mathbb{Z}\} \subseteq \mathbb{Z}$
+        and $\mathbb{Z} \subseteq \{5a+3b:a,b\in\mathbb{Z}\}$. It is clear that the first one is
+        true. Indeed, since $a$ and $b$ are integers, it follows that $5a+3b$ is also an integer.
+        Now, suppose $n\in \mathbb{Z}$. Then, take $a=-n$ and $b=2n$. And, we get
+        \begin{align*}
+            5a+3b &= 5(-n)+3(2n) \\
+            &= -5n+6n \\
+            &= n.
+        \end{align*}
+        We have shown that, given any $n\in\mathbb{Z}$ there exists $a$ and $b$ such that $n=5a+3b$.
+        This means that $\mathbb{Z} \subseteq \{5a+3b:a,b\in\mathbb{Z}\}$, and therefore
+        $\{5a+3b:a,b\in\mathbb{Z}\} = \mathbb{Z}$.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 3.11.)} Suppose $A,B$ and $C$ are sets. Is there a difference between
+    $(A\times B)\times C$ and $A\times (B\times C)$? Explain your answer.
+    \vspace{1.5mm}
+
+    \textbf{Solution.} They are the same set since they are defined the same.
+    \vspace{1.5mm}
+
+    $(A\times B)\times C$ is obtained by first taking the cartesian product of $A$ and $B$,
+    which means taking all possible couples $(a,b)$ where $a\in A$ and $b\in B$ to form the
+    set $A\times B$, and then taking the cartesian product of the result with $C$. That is,
+    combining all $(a,b)$ and all $c$ to form triples $(a,b,c)$.
+    \vspace{1.5mm}
+
+    $A\times (B\times C)$ can be described the same way, except we first take the cartesian
+    product of $B\times C$ and then take the cartesian product of $A$ and the result.
+    \vspace{1.5mm}
+    
+    In any case, we end up with the same collection of triples $(a,b,c)$ where $a\in A$,
+    $b\in B$, and $c\in C$.
+    \qedright
+\end{homeworkProblem}
+\end{document}
