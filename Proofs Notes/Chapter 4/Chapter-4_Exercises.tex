@@ -325,6 +325,19 @@
             it follows by the inductive hypotheses that the second term is divisible by $9$.
             Thus, $9\mid (3^{4(k+1)}+9)$. Therefore, the result must hold for all $n\in\mathbb{N}$.
         \end{proof}
+        \item \begin{proof}
+            The base case is when $n=1$, and $1^5-1=0$. Hence, $5\mid 1^5 -1$, as desired. Now, 
+            assume that $5\mid (k^5-k)$ for any $k\in \mathbb{N}$. We want to prove that 
+            $5\mid ((k+1)^5-(k+1))$. To accomplish this, observe that
+            \begin{align*}
+                (k+1)^5-(k+1) &= (k^5+5k^4+10k^3+10k^2+5k+1)-(k+1) \\
+                &= (k^5-k)+(5k^4+10k^3+10k^2+5k) \\
+                &= (k^5-k)+5\cdot (k^4+2k^3+2k^2+k)
+            \end{align*}
+            By the inductive hypothesis, the first term is divisible by $5$; and the second term
+            is also divisible by $5$. Hence, the result holds for $k+1$. Therefore, it must hold
+            for all $n\in\mathbb{N}$.
+        \end{proof}
     \end{enumerate}
 \end{homeworkProblem}
 \end{document}
