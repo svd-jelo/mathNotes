@@ -338,6 +338,31 @@
             is also divisible by $5$. Hence, the result holds for $k+1$. Therefore, it must hold
             for all $n\in\mathbb{N}$.
         \end{proof}
+        \item \begin{proof}
+            Since $5^(2\cdot 1)-1=24$ and $6\mid 24$, the result holds for the base case, $n=1$.
+            Now, suppose the result holds for any $k\in\mathbb{N}$. We wish to show that
+            $6\mid 5^{2(k+1)}-1$. We have
+            \begin{align*}
+                5^{2(k+1)}-1 &= 5^2 \cdot 5^{2k}-1 \\
+                &= 24\cdot 5^{2k} + (5^{2k}-1) \\
+                &= 6\cdot 4\cdot 5^{2k} + (5^{2k}-1)
+            \end{align*}
+            The first term is a multiple of $6$, so it is divisible by $6$. And, by the induction
+            hypothesis, the second term is divisible by $6$. Thus, $6\mid 5^{2(k+1)}-1$ as desired.
+            Therefore, the result must hold for all $n\in\mathbb{N}$.
+        \end{proof}
+        \item \begin{proof}
+            For the base case, we know that $6^0 -1=0$ and $5\mid 0$. So, the result holds for the
+            base case. Now suppose $5\mid (6^k-1)$ for any $k\in\mathbb{N}$. We want to prove that
+            the result also holds for $k+1$. To this end, observe that
+            \begin{align*}
+                6^{k+1}-1 &= 6\cdot 6^k -1\\
+                &= 5\cdot 6^k + (6^k-1)
+            \end{align*}
+            The first term is divisible by $5$, and, by the inductive hypothesis, the second term
+            is divisible by $5$. Hence, $5\mid (6^{k+1}-1)$, and therefore $5\mid (6^n-1)$ for 
+            all $n\in \mathbb{N}$.
+        \end{proof}
     \end{enumerate}
 \end{homeworkProblem}
 \end{document}
