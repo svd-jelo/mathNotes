@@ -280,6 +280,7 @@
             \item $5\mid (6^n - 1)$
         \end{enumerate}
     \end{multicols}
+    \textbf{Solution.}
     \begin{enumerate}[label=(\alph*)]
         \item \begin{proof}
             The base case is when $n=1$, and $4^1-1=3$, so $3\mid (4^1-1)$. Now, suppose for any
@@ -362,6 +363,53 @@
             The first term is divisible by $5$, and, by the inductive hypothesis, the second term
             is divisible by $5$. Hence, $5\mid (6^{k+1}-1)$, and therefore $5\mid (6^n-1)$ for 
             all $n\in \mathbb{N}$.
+        \end{proof}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 4.4.)} Prove that each of the following hold for every $n\in\mathbb{N}$.
+    \begin{enumerate}[label=(\alph*)]
+        \item $1^2+2^2+3^2+\cdots+n^2=\frac{n(n+1)(2n+1)}{6}$
+        \item $1^3+2^3+3^3+\cdots+n^3=\frac{n^2(n+1)^2}{4}$
+        \item $1\cdot2+2\cdot3+3\cdot4+\cdots+n\cdot(n+1)=\frac{n(n+1)(n+2)}{2}$
+        \item $1\cdot3+2\cdot4+3\cdot5+\cdots+n\cdot(n+2)=\frac{n(n+1)(2n+7)}{6}$
+        \item $1^3+2^3+3^3+\cdots+n^3=(1+2+3+\cdots+n)^2$
+        \item $1\cdot1!+2\cdot2!+3\cdot3!+\cdots+n\cdot n!=(n+1)!-1$
+        \item $2^0+2^1+2^2+2^3+\cdots+2^n=2^{n+1}-1$
+        \item $3^1+3^2+3^3+\cdots+3^n=\frac{3^{n+1}-3}{2}$
+        \item $4^0+4^1+4^2+4^3+\cdots+4^n\frac{4^{n+1}-1}{3}$
+        \item $\frac{1}{2!}+\frac{2}{3!}+\frac{3}{4!}+\cdots+\frac{n}{(n+1)!}=1-\frac{1}{(n+1)!}$
+        \item $\frac{1}{1\cdot2}+\frac{1}{2\cdot3}+\frac{1}{3\cdot4}+\cdots+\frac{1}{n\cdot(n+1)}
+        =\frac{n}{n+1}$
+    \end{enumerate}
+    \textbf{Solution.}
+    \begin{enumerate}[label=(\alph*)]
+        \item \begin{proof}
+            The base case is when $n=1$, and
+            \begin{align*}
+                \frac{1\cdot(1+1)(2\cdot1+1)}{6}=\frac{6}{6}=1=1^2,
+            \end{align*}
+            as desired. Now, suppose the result holds for any $k\in\mathbb{N}$. We want to show
+            that the result also holds for $k+1$. That is, we want to prove that
+            \begin{align*}
+                1^2+2^2+3^2+\cdots+k^2+(k+1)^2=\frac{(k+1)((k+1)+1)(2(k+1)+1)}{6}.
+            \end{align*}
+            Equivalently, we wish to show that
+            \begin{align*}
+                1^2+2^2+3^2+\cdots+k^2+(k+1)^2=\frac{(k+1)(k+2)(2k+3)}{6}.
+            \end{align*}
+            We begin by manipulating the left hand side of the equation. By the inductive
+            hypothesis, we have
+            \begin{align*}
+                1^2+2^2+3^2+\cdots+k^2+(k+1)^2 &= \frac{k(k+1)(2k+1)}{6}+(k+1)^2 \\
+                &= \frac{k(k+1)(2k+1)+6(k+1)^2}{6} \\
+                &= \frac{(k+1)(2k^2+k+6k+6)}{6} \\
+                &= \frac{(k+1)(2k^2+4k+3k+6)}{6} \\
+                &= \frac{(k+1)(k+2)(2k+3)}{6},
+            \end{align*}
+            which is what we wanted. So, the result also holds for $k+1$, and therefore it must
+            hold for all $n\in \mathbb{N}$.
         \end{proof}
     \end{enumerate}
 \end{homeworkProblem}
