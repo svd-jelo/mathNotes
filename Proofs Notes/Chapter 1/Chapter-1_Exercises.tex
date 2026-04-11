@@ -110,10 +110,10 @@
 %
 
 \newcommand{\hmwkTitle}{Exercises}
-\newcommand{\hmwkChapter}{CHAPTER 3}
+\newcommand{\hmwkChapter}{CHAPTER 1}
 \newcommand{\hmwkDate}{April 3, 2026}
 \newcommand{\hmwkClassTime}{}
-\newcommand{\hmwkChapterTitle}{Sets}
+\newcommand{\hmwkChapterTitle}{Intuitive Proofs}
 \newcommand{\hmwkAuthorName}{\textbf{Christian Jelo R. Artoza}}
 
 %
@@ -443,6 +443,59 @@
         \end{align*}
         years.\qedright
     \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 1.26.)} An alien creature has three legs,
+    and on each of his three alien feet he wears an a alien sock. Suppose he just washed $n$ triplets
+    of alien socks ($3n$ individuals), and each triplet is a different color. If this alien pulls
+    his alien socks out of his alien dryer one-at-a-time, how many must he pull out to be
+    guaranteed to have a matching triplet?
+    \vspace{5mm}
+
+    \textbf{Solution.}
+    There are $n$ different colors and $3n$ socks in the dryer. The pigeonhole principle guarantees
+    that the alien will get a matching triplet if it pulls out $2n+1$ socks.\qedright
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    A magic square is an $n\times n$ matrix where the sum of the entries in each row, column and'
+    diagonal equal the same value. For example,
+    \begin{align*}
+        \begin{pmatrix}
+            8 & 1 & 6 \\
+            3 & 5 & 7 \\
+            4 & 9 & 2
+        \end{pmatrix}
+    \end{align*}
+    is a $3\times 3$ matrix whose three rows, three columns, and two diagonals each sum to $15$.
+    Thus, this is a magic square. \\
+
+    An antimagic square is an $n\times n$ matrix where each row, column and diagonal sums to a
+    distinct value. For example,
+    \begin{align*}
+        \begin{pmatrix}
+            9 & 4 & 5 \\
+            10 & 3 & -2 \\
+            6 & 9 & 7
+        \end{pmatrix}
+    \end{align*}
+    is a $3\times 3$ matrix whose rows sum to $18, 11,$ and $22$, columns sum to $25, 16$ and $10$,
+    and diagonals sum to $19$ and $14$. Notice that all eight of these numbers is different than
+    the rest, showing that this is an antimagic square. \\
+
+    Prove that, for every $n$, there does not exist an $n\times n$ antimagic square where each
+    entry is $-1,0,1$.
+
+    \begin{proof}
+        An $n\times n$ matrix has $n$ rows, $n$ columns, and $2$ diagonals. So, there are
+        $2n+2$ distinct sums for an antimagic square. However, for an $n\times n$ matrix
+        where each entry is $-1,0,$ or $1$, the minimum value for the sum of a row, column, or
+        diagonal is $-1\cdot n = -n$, while the maximum value $1\cdot n=n$. So, the number of
+        possible values that a sum could take on is only $n-(-n)+1=2n+1$. So, by the
+        pigeonhole principle, at least two of the rows, columns, or diagonals sum to the same
+        value.
+    \end{proof}
 \end{homeworkProblem}
 
 \end{document}
