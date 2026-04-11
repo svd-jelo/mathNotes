@@ -110,10 +110,10 @@
 %
 
 \newcommand{\hmwkTitle}{Exercises}
-\newcommand{\hmwkChapter}{CHAPTER 3}
+\newcommand{\hmwkChapter}{CHAPTER 2}
 \newcommand{\hmwkDate}{April 3, 2026}
 \newcommand{\hmwkClassTime}{}
-\newcommand{\hmwkChapterTitle}{Sets}
+\newcommand{\hmwkChapterTitle}{Direct Proofs}
 \newcommand{\hmwkAuthorName}{\textbf{Christian Jelo R. Artoza}}
 
 %
@@ -361,5 +361,281 @@
         \item $q=15,$ and $r=0$ so that $-15 = (-1)\cdot 15\cdot + 0$
         \item $q=0,$ and $r=0$ so that $0 = 4\cdot 0 + 0$ \qedright
     \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.13.)} Define the absolute value of a real number $x$ in this way:
+    \begin{align*}
+        \left| x \right| = \begin{cases}
+            x & \text{if } x\geq 0 \\
+            -x & \text{if } x<0.
+        \end{cases}
+    \end{align*}
+
+    Give three examples showing that if $x$ and $y$ are real numbers, then $|xy|=|x|\cdot|y|$.
+    Then, prove that this is true.
+    \vspace{5mm}
+
+    \textbf{Solution.}
+    If $x=-1,y=3$, then $$|xy|=|-3|=-(-3)=3,$$ and $$|x|\cdot|y|=|-1|\cdot|3|=-(-1)\cdot(3)=3.$$
+    If $x=2,y=-3$, then $$|xy|=|-6|=-(-6)=6,$$ and $$|x|\cdot|y|=|2|\cdot|-3|=2\cdot(-(-3))=6.$$
+    If $x=-5,y=-4$, then $$|xy|=|20|=20,$$ and $$|x|\cdot|y|=|-5|\cdot|-4|=-(-5)\cdot(-(-4))=5\cdot4=20.$$
+    \begin{proof}
+        Assume $x$ and $y$ are real numbers. Then, either $x$ and $y$ are both non-negative,
+        $x$ and $y$ are both negative, or one of them is negative. We consider these three cases,
+        separately. 
+        \vspace{5mm}
+
+        \underline{Case 1: $x$ and $y$ are both non-negative.}
+        \vspace{5mm}
+        Suppose $x\geq 0$ and $y\geq 0$. Then, $|x|=x,|y|=y,$ and $xy\geq 0$. Thus,
+        $$|xy|=xy=|x|\cdot|y|.$$
+
+        \underline{Case 2: $x$ and $y$ are both negative.}
+        \vspace{5mm}
+        Suppose $x<0$ and $y<0$. Then, $|x|=-x, |y|=-y,$ and $xy>0$. Thus, $|xy|=xy$, and
+        $$|x|\cdot|y|=(-x)\cdot(-y)=xy.$$
+        Therefore, $|xy|=|x|\cdot|y|,$ as desired.
+        \vspace{5mm}
+
+        \underline{Case 3: One of $x$ and $y$ is negative.}
+        \vspace{5mm}
+        Without loss of generality, suppose $x<0$ and $y\geq 0$. Then, $|x|=-x, |y|=y,$ and
+        $xy\leq 0$. Hence, $|xy|=-xy,$ and
+        $$|x|\cdot|y|=(-x)\cdot y=-xy$$
+        Thus, $|xy|=|x|\cdot|y|.$
+        \vspace{5mm}
+
+        We have shown that $|xy|=|x|\cdot|y|$ whether $x$ or $y$ is non-negative or negative.
+        Combined, this shows that $|xy|=|x|\cdot|y|$ for all real numbers $x,y$.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.14.)} Prove that if $m,n,$ and $t$ are integers, then at least one of $m-n$, $n-t$, and $m-t$
+    is even. Also, before your proof, write down three examples of integers $m,n$ and $t$,
+    and show which of $m-n,$ $n-t$ or $m-t$ are even.
+    \vspace{5mm}
+
+    \textbf{Solution.} If $m=1,n=2,t=3,$ then $m-t$ is even since $m-t=1-3=-2$. If $m=10,n=-1,
+    t=7$, then $n-t$ is even since $n-t=(-1)-7=-8$. If $m=4,n=11,t=-8$, then $m-t$ is even
+    since $m-t=4-(-8)=12$.
+    \vspace{5mm}
+
+    \begin{proof}
+        Assume $m,n,$ and $t$ are integers. Then, either $m-n$ is even or $m-n$ is odd. If
+        $m-n$ is even, then the result holds. Now, suppose $m-n$ is odd. Then, since
+        $$m-n=(m-t)-(n-t),$$
+        it follows that $(m-t)-(n-t)$ is odd. But, any two integers must have opposite parities
+        if their difference is odd. This implies that either $m-t$ is even or $n-t$ is even.
+        So, at least one of $m-n, m-t, n-t$ is even whether $m-n$ is even or $m-n$ is odd.
+        Combined, this shows that for any integers $m,n,t$, at least one of $m-n,m-t,n-t$ is
+        even.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.15)}
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that if $n$ is a positive integer, then $4$ divides $1+(-1)^n(2n-1)$.
+        \item Prove that every multiple of $4$ is equal to $1+(-1)^n(2n-1)$ for some positive
+        integer $n$.
+    \end{enumerate}
+    \textbf{Solution.}
+    \begin{enumerate}[label=(\alph*)]
+        \item Assume $n$ is a positive integer. Then, either $n$ is even or $n$ is odd.
+        
+        \underline{Case 1: $n$ is even.} Suppose $n$ is even. Then, $n=2k$ for some $k\in
+        \mathbb{N}$. Thus,
+        \begin{align*}
+            1+(-1)^{n}(2n-1) &= 1+(-1)^{2k}(2(2k)-1)\\
+            &= 1 + 1\cdot(4k-1) \\
+            &= 4k
+        \end{align*}
+        This implies that, $4$ divides $1+(-1)^n(2n-1)$.
+        
+        \underline{Case 2: $n$ is odd.} Suppose $n$ is odd. Then, $n=2k+1$ for some $k\in
+        \mathbb{N}$. Thus,
+        \begin{align*}
+            1+(-1)^{n}(2n-1) &= 1+(-1)^{2k+1}(2(2k+1)-1)\\
+            &= 1+(-1)(4k+1) \\
+            &= 1-4k-1 \\
+            &= 4\cdot(-k)
+        \end{align*}
+        Hence, $4$ divides $1+(-1)^n(2n-1)$. Combined with Case 1, it follows that $4$
+        divides $1+(-1)^n(2n-1)$ for any positive integer $n$.\qedright
+
+        \item Let $m$ be a multiple of $4$. Then, $m=4k$ for some $k\in\mathbb{Z}$. Now,
+        let $n=2k$. Then,
+        $$1+(-1)^{n}(2n-1) = 1+(-1)^{2k}(2(2k)-1).$$
+        Note that $(-1)^{2k}=1$ for any $k\in\mathbb{Z}$. So, 
+        \begin{align*}
+            1+(-1)^{n}(2n-1) &= 1+(2(2k)-1) \\
+            &= 1+(4k-1) \\
+            &= 4k \\
+            &= m,
+        \end{align*}
+        as desired. \qedright
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.17)} For each of the following pairs of numbers, list all of their common
+    divisors (positive and negative!), and find $\text{gcd}(a,b)$.
+    \begin{multicols}{3}
+        \begin{enumerate}[label=(\alph*)]
+            \item $a=12,b=330$
+            \columnbreak
+            \item $a=-36,b=64$
+            \columnbreak
+            \item $a=7,b=-27$
+        \end{enumerate}
+    \end{multicols}
+    \textbf{Solution.}
+    \begin{enumerate}[label=(\alph*)]
+        \item \underline{Common divisors:} $-6,-3,-2,-1,1,2,3,6$ \\
+        $\text{gcd}(12,330)=6$
+        \item \underline{Common divisors:} $-4,-2,-1,1,2,4$ \\
+        $\text{gcd}(-36,64)=4$
+        \item \underline{Common divisors:} $-1,1$ \\
+        $\text{gcd}(7,-27)=1$
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.18.)} For each pair of integers, find gcd$(a,b)$ and integers $k$ and
+    $\ell$ such that gcd$(a,b)=ak+b\ell$. (Note: We know that such integers exist by Theorem 2.13.)
+    \begin{multicols}{3}
+        \begin{enumerate}[label=(\alph*)]
+            \item $a=3,b=13$
+            \item $a=13,b=3$
+            \columnbreak
+            \item $a=-25,b=40$
+            \item $a=-22,b=-14$
+            \columnbreak
+            \item $a=62,b=48$
+            \item $a=13,b=-50$
+        \end{enumerate}
+    \end{multicols}
+    \begin{enumerate}[label=(\alph*)]
+        \item gcd$(3,13)=1$ \\
+        Let $k=9$ and $l=-2$. Then,
+        $$ak+b\ell=3\cdot9+13\cdot(-2)=27-26=1.$$
+        \item gcd$(13,3)=1$ \\
+        Let $k=-2$ and $\ell=9$. Then,
+        $$ak+b\ell=13\cdot(-2)+3\cdot9=-26+27=1.$$
+        \item gcd$(-25,40)=5$ \\
+        Let $k=3$ and $\ell=2$. Then,
+        $$ak+b\ell=(-25)\cdot3+40\cdot2=-75+80=5.$$
+        \item gcd$(-22,-14)=2$ \\
+        Let $k=5$ and $\ell=-8$. Then,
+        $$ak+b\ell=(-22)\cdot5+(-14)\cdot(-8)=-110+112=2.$$
+        \item gcd$(62,48)=2$ \\
+        Let $k=7$ and $\ell=-9$. Then,
+        $$ak+b\ell=62\cdot7+48\cdot(-9)=434-432=2.$$
+        \item gcd$(13,-50)=1$ \\
+        Let $k=27$ and $\ell=7$. Then,
+        $$ak+b\ell=13\cdot27+(-50)\cdot7=351-350=1.$$
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.19.)} Let $a$ and $b$ be positive integers, and suppose $r$ is the nonzero
+    remainder when $b$ is divided by $a$. Prove that when $-b$ is divided by $a$, the remainder
+    is $a-r$.
+    \begin{proof}
+        Assume that $r\neq 0$. Since $r$ is the remainder when $b$ is divided by $a$, it follows by
+        the division algorithm that
+        $$b=a\cdot q+r,$$
+        where $q\in\mathbb{Z}$ and $0\leq r<a$. Hence,
+        $$-b=a\cdot(-q)+(-r).$$
+        Now, let $p=-1-q$. Then, $-q=p+1$. So,
+        \begin{align*}
+            -b&=a\cdot(p+1)+(-r) \\
+            &=a\cdot p+(a-r).
+        \end{align*}
+        Furthermore, $0\leq a-r<a$. So, we have expressed $-b$ in the form that matches with the
+        division algorithm. Therefore, by uniqueness, the remainder when $-b$ is divided by $a$
+        must be $a-r$.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.20)} Determine the remainder when $3^{302}$ is divided by $28$, and show
+    how you found your answer.
+    \vspace{1mm}
+
+    \textbf{Solution.} Observe that $3^2\equiv 9 \,(\text{mod }28)$ and $3^6\equiv 1\,(\text{mod }28)$;
+    the first one is clear, but the second is true since $728=28\cdot26$, and consequently $728\equiv
+    0 \, (\text{mod }28)$. Hence, $(3^6)^{50}\equiv1 \, (\text{mod }28),$ which implies that
+    $3^{300}\equiv1 \, (\text{mod }28)$. Thus,
+    $$3^{300}\cdot 3^2 \equiv 1\cdot 9 \, (\text{mod }28),$$
+    and therefore
+    $$3^{302}\equiv 9 \, (\text{mod }28).$$
+    So, the remainder when $3^{302}$ is divided by $28$ is $9$.\qedright
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.22.)} Assume that $a$ is an integer and $p$ and $q$ are distinct primes.
+    Prove that if $p\mid a$ and $q\mid a$, then $pq\mid a$. Also, before your proof, give three
+    examples of this property.
+    \vspace{5mm}
+
+    \textbf{Solution.} If $a=12,p=2$ and $q=3$, then $2\mid 12, 3\mid 12$, and $6\mid 12$. If
+    $a=70,p=5$ and $q=7$, then $5\mid 70,7\mid 70,$ and $35\mid 70$. If $a=143,p=11$ and $q=13$,
+    then $11\mid 143,13\mid 143,$ and $143\mid 143$.
+
+    \begin{proof}
+        Suppose $p\mid a$ and $q\mid a$. Then $a=kp$ for some $k\in\mathbb{Z}$, and so
+        $q\mid kp$. But, gcd$(p,q)=1$ since $q$ and $p$ are distinct primes. So, by part (ii) of
+        Lemma 2.17, $q\mid k$. This implies that $k=\ell q$ for some $\ell\in\mathbb{Z}$. Thus,
+        $$a=kp=(\ell q)\cdot p=\ell\cdot(pq),$$
+        and therefore $pq\mid a$, as desired.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textit{(Exercise 2.23.)} Prove that if $abc$ is a multiple of 10, then at least one of
+    $ab,ac,$ or $bc$ is a multiple of 10. Also, before your proof, give three examples of this
+    property.
+    \vspace{5mm}
+
+    \textbf{Solution.}
+
+    \underline{Examples:}
+    \begin{multicols}{3}
+        \begin{enumerate}[label=(\alph*)]
+            \item $1\cdot 5\cdot 2=10$
+            \columnbreak
+            \item $5\cdot 5\cdot 8=160$
+            \columnbreak
+            \item $5\cdot 6\cdot 7=210$
+        \end{enumerate}
+    \end{multicols}
+    \begin{proof}
+        Suppose $abc$ is a multiple of $10$. Then $abc$ is also a multiple of $2$ and a
+        multiple of $5$. In other words, $5\mid abc$ and $2\mid abc$. Thus, by part (iii) of
+        Lemma 2.17., $5\mid ab$ or $5\mid c$, and $2\mid ab$ or $2\mid c$. Equivalently,
+        there are three cases:
+        \begin{enumerate}[label=(\roman*)]
+            \item $5\mid ab$ and $2\mid ab$
+            \item One of $ab$ and $c$ are divisible by $5$, and the other is divisible by $2$
+            \item $5\mid c$ and $2\mid c$
+        \end{enumerate}
+        It is clear to see that the result holds for cases (i) and (iii) --- For case (i),
+        it follows by the previous exercise that $10\mid ab$; while, for case (iii), we have
+        $10\mid c$ which implies that $10\mid ac$ and $10\mid bc$. Now, we'll show that the
+        result also holds for case (ii).
+        \vspace{3mm}
+
+        \underline{Case (ii): $5\mid ab$ and $2\mid c$.} Without loss of generality,
+        suppose $5\mid ab$ and $2\mid c$. Then, by part (iii) of Lemma 2.17., either
+        $5\mid a$ or $5\mid b$. So, considering that $2\mid c$, it must be the case that
+        either $10\mid ac$ or $10\mid ac$.
+        \vspace{3mm}
+
+        Combining all these three cases, it follows that at least one of $ab,ac,$ or $bc$
+        is a multiple of $10$.
+    \end{proof}
 \end{homeworkProblem}
 \end{document}
